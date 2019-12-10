@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
-<title>Upload Files</title>
+<title>Upload File</title>
 </head>
 <body>
-   <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="files" multiple>
-      <input type="submit" value="Upload Files"></input>
-   </form>
+   <form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="file" /><br/><br/>
+    <input type="submit" value="Submit" />
+</form>
 </body>
 </html>

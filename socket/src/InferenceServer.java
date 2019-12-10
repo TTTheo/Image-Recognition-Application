@@ -25,7 +25,7 @@ public class InferenceServer {
                 InputStream ist = connectSocket.getInputStream();
                 OutputStream ost = connectSocket.getOutputStream();
 
-                ClientHandler thread = new ClientHandler(ist, ost);
+                ClientHandler thread = new ClientHandler(connectSocket, ist, ost);
 
                 thread.start();
 
@@ -40,13 +40,13 @@ public class InferenceServer {
 
 class ClientHandler extends Thread {
 
-    //    private final Socket welcomeSocket;
+        private final Socket welcomeSocket;
     private final InputStream inStream;
     private final OutputStream outStream;
 
     ClientHandler(InputStream inStream, OutputStream outStream) {
 
-//        this.welcomeSocket = s;
+        this.welcomeSocket = s;
         this.inStream = inStream;
         this.outStream = outStream;
     }
