@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 public class InferenceServer {
 
     public static int counter = -1; // image counter
-    public static String imageFolder = "./input/";
-    public static String labelFolder = "./output/";
+    public static String imageFolder = "input/";
+    public static String labelFolder = "output/";
 
     // Helper class to implement multi-thread
     static class ClientHandler extends Thread {
@@ -35,19 +35,24 @@ public class InferenceServer {
                     ObjectOutputStream os = new ObjectOutputStream(outStream);
                     ObjectInputStream is = new ObjectInputStream(inStream);
 
+                    DataInputStream dis = new DataInputStream(is);
+                    BufferedInputStream bis = new BufferedInputStream(inStream)
             ) {
 
                 // Get image and save to ./input/
-                BufferedImage rcvBufferedImage = ImageIO.read(inStream);
-
+                // BufferedImage rcvBufferedImage = ImageIO.read(bis);
+                byte[] buffer = (byte[]) is.readObject();
+                BufferedImage rcvBufferedImage = ImageIO.read(new ByteArrayInputStream(buffer));
+                // is.flush();
                 counter++;
                 int myCounter = counter;
                 Instant start = Instant.now();
 
                 File outfile = new File(imageFolder + myCounter + ".jpg");
+                System.out.println("before");
                 ImageIO.write(rcvBufferedImage, "jpg", outfile);
-
-
+                // outfile.close();
+                System.out.println("after");
                 // Get output prediction from ./output/
                 String labelFile = labelFolder + myCounter + ".txt";
                 String prediction;
@@ -60,7 +65,6 @@ public class InferenceServer {
                         break;
                     }
                 }
-
 
                 // delete output
                 if (tempFile.delete()) {
@@ -75,7 +79,7 @@ public class InferenceServer {
                 double myTime = (double)timeElapsed-InferenceTime;
                 os.writeObject(prediction.substring(0, prediction.length() - 1) + '_' + myTime);
 
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 System.err.println("IO Exception in Client Handler");
                 System.exit(1);
             }
