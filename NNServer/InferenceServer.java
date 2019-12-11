@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 public class InferenceServer {
 
     public static int counter = -1; // image counter
-    public static String imageFolder = "../input/";
-    public static String labelFolder = "../output/";
+    public static String imageFolder = "./input/";
+    public static String labelFolder = "./output/";
 
     // Helper class to implement multi-thread
     static class ClientHandler extends Thread {
