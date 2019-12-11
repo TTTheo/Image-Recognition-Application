@@ -25,7 +25,7 @@ public class InferenceClient {
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
         ) {
 
-            // TODO: Read image from path input by user
+            // Read image from path input by user
             String imagePath;
             System.out.print("Please enter your image path: ");
             imagePath = stdIn.readLine();
@@ -46,8 +46,7 @@ public class InferenceClient {
                 e.printStackTrace();
             }
 
-
-            //TODO: Read label from server
+            // Read label from server
             String label = (String) is.readObject();
             System.out.println("Prediction: " + label);
 
