@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.stream.Stream;
+import java.lang.*;
 
 public class InferenceServer {
 
@@ -46,7 +47,8 @@ public class InferenceServer {
                 // is.flush();
                 counter++;
                 int myCounter = counter;
-                Instant start = Instant.now();
+//                 Instant start = Instant.now();
+                long start = System.currentTimeMillis()
 
                 File outfile = new File(imageFolder + myCounter + ".jpg");
                 System.out.println("before");
@@ -75,8 +77,10 @@ public class InferenceServer {
 
                 double InferenceTime = Double.parseDouble(prediction.split("_")[1]);
                 System.out.println("Inference time " + InferenceTime);
-                Instant finish = Instant.now();
-                double timeElapsed = Duration.between(start, finish).toMillis();
+//                 Instant finish = Instant.now();
+                long finish = System.currentTimeMillis();
+//                 double timeElapsed = Duration.between(start, finish).toMillis();
+                long timeElapsed = finish - start;
                 System.out.println("timeElapsed " + timeElapsed);
                 double myTime = (double)timeElapsed-InferenceTime;
                 os.writeObject(prediction.substring(0, prediction.length() - 1) + '_' + myTime);
