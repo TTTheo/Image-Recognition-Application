@@ -48,7 +48,7 @@ public class InferenceServer {
                 counter++;
                 int myCounter = counter;
 //                 Instant start = Instant.now();
-                long start = System.currentTimeMillis()
+                long start = System.currentTimeMillis();
 
                 File outfile = new File(imageFolder + myCounter + ".jpg");
                 System.out.println("before");
