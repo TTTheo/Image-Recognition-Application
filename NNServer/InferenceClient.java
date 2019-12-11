@@ -39,7 +39,7 @@ public class InferenceClient {
 
                 // Send image object to server.
                 System.out.println("Sending image to server");
-                ImageIO.write(bufferedImage, "png", echoSocket.getOutputStream());
+                ImageIO.write(bufferedImage, "jpg", echoSocket.getOutputStream());
                 System.out.println("Successful!");
 
             } catch (IOException e) {
