@@ -44,7 +44,7 @@ public class InferenceServer {
                 int myCounter = counter;
                 Instant start = Instant.now();
 
-                File outfile = new File(imageFolder + myCounter + ".png");
+                File outfile = new File(imageFolder + myCounter + ".jpg");
                 ImageIO.write(rcvBufferedImage, "jpg", outfile);
 
 
