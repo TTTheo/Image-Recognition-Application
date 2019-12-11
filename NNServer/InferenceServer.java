@@ -74,8 +74,10 @@ public class InferenceServer {
                 }
 
                 double InferenceTime = Double.parseDouble(prediction.split("_")[1]);
+                System.out.println("Inference time " + InferenceTime);
                 Instant finish = Instant.now();
                 double timeElapsed = Duration.between(start, finish).toMillis();
+                System.out.println("timeElapsed " + timeElapsed);
                 double myTime = (double)timeElapsed-InferenceTime;
                 os.writeObject(prediction.substring(0, prediction.length() - 1) + '_' + myTime);
 
