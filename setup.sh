@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo su
 sudo apt-get update
 
 sudo mkdir ~/java
