@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.io.ByteArrayOutputStream;
 
 
 public class InferenceClient {
@@ -20,8 +21,10 @@ public class InferenceClient {
 
         try (
                 Socket echoSocket = new Socket(hostName, portNumber);
-                ObjectOutputStream os = new ObjectOutputStream(echoSocket.getOutputStream());
+
+                OutputStream outstream = echoSocket.getOutputStream();
                 ObjectInputStream is = new ObjectInputStream(echoSocket.getInputStream());
+                ObjectOutputStream os = new ObjectOutputStream(echoSocket.getOutputStream());
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
         ) {
 
@@ -38,8 +41,14 @@ public class InferenceClient {
                 bufferedImage = ImageIO.read(imageFile);
 
                 // Send image object to server.
+                String ext = imagePath.substring(imagePath.length()-3);
+
                 System.out.println("Sending image to server");
-                ImageIO.write(bufferedImage, "jpg", echoSocket.getOutputStream());
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                ImageIO.write(bufferedImage, ext, bos );
+                bos.flush();
+                byte[] buffer = bos.toByteArray();
+                os.writeObject(buffer);
                 System.out.println("Successful!");
 
             } catch (IOException e) {
