@@ -53,11 +53,11 @@ class modelInfer:
         top5 = [(self.labels[idx], 100.0*prediction_certainties[idx].item()) for idx in ind[0][:5]]
         strng=''
         cnt=0
-        choices=[' top choice ',' second choice ',' third choice ',' fourth choice ',' fifth choice ']
+        choices=['top choice: ','second choice: ','third choice: ','fourth choice: ','fifth choice: ']
         strng+=self.mod+' predicts this image as:\n'
         for i in top5:
-            strng+=str(i[0])+'\t\t\t as its'+choices[cnt]
-            strng+='with a\t '+str(round(i[1],1))+' confidence percentage\n'
+            strng+=(choices[cnt] + str(i[0])).ljust(35)
+            strng+='with a confidence percentage of '+str(round(i[1],1))+' confidence percentage\n'
             cnt+=1
         timestop=time.time()
         timetot=timestop-timestart
