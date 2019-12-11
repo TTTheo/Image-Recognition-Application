@@ -20,6 +20,7 @@ class modelInfer:
                             transforms.ToTensor(), transforms.Normalize(
                             mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])]) 
         # this transform is prescribed by pytorch documentation for resnet pretrained imagenet dataset networks
+        self.mod=modeltype
         if modeltype=='resnet50':
             self.Imodel = models.resnet50(pretrained=True, progress=True) 
             #pretrained resnet50 will be resource efficient while still achieving near state-of-the-art results
@@ -53,9 +54,10 @@ class modelInfer:
         strng=''
         cnt=0
         choices=[' top choice ',' second choice ',' third choice ',' fourth choice ',' fifth choice ']
+        strng+=self.mod+' predicts this image as:\n'
         for i in top5:
-            strng+='ResNet50 predicts this image is a '+str(i[0])+' as its'+choices[cnt]
-            strng+='with a '+str(round(i[1],1))+' confidence percentage\n'
+            strng+=str(i[0])+'\t\t\t as its'+choices[cnt]
+            strng+='with a\t '+str(round(i[1],1))+' confidence percentage\n'
             cnt+=1
         timestop=time.time()
         timetot=timestop-timestart
