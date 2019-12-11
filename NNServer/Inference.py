@@ -3,6 +3,7 @@ from torchvision import models
 from torchvision import transforms
 from PIL import Image
 import os
+import io
 import socket
 import time
 import glob
@@ -37,7 +38,12 @@ class modelInfer:
 
     def model_inference(self, filename):
         timestart=time.time()
-        img = Image.open(filename)
+        
+        with open(filename, "rb") as f:
+            b = io.BytesIO(f.read())
+            img = Image.open(b)
+        
+        # img = Image.open(filename)
         os.remove(filename)
 
         fileout='output/'+filename.split('/')[1].split('.')[0]+'.txt'
