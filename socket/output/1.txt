@@ -1,6 +1,0 @@
-ResNet50 predicts this image is a Labrador retriever as its top choice with a 51.8 confidence percentage
-ResNet50 predicts this image is a Chesapeake Bay retriever as its second choice with a 7.3 confidence percentage
-ResNet50 predicts this image is a golden retriever as its third choice with a 5.2 confidence percentage
-ResNet50 predicts this image is a dingo as its fourth choice with a 3.6 confidence percentage
-ResNet50 predicts this image is a bloodhound as its fifth choice with a 2.9 confidence percentage
-_706.174373626709

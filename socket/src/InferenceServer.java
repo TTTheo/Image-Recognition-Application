@@ -68,13 +68,12 @@ public class InferenceServer {
                 } else {
                     System.out.println("Failed to delete the file " + labelFile);
                 }
-                double timeElapse = Double.parseDouble(prediction.split("_")[1])
-                prediction = prediction.split("_")[0]
-                // send to client
+
+                double InferenceTime = Double.parseDouble(prediction.split("_")[1]);
                 Instant finish = Instant.now();
-                long timeElapsed = Duration.between(start, finish).toMillis();
-                timeElapse = (double)timeElapsed-timeElapse 
-                os.writeObject(prediction.substring(0, prediction.length() - 1) + '_' + timeElapse);
+                double timeElapsed = Duration.between(start, finish).toMillis();
+                double myTime = (double)timeElapsed-InferenceTime;
+                os.writeObject(prediction.substring(0, prediction.length() - 1) + '_' + myTime);
 
             } catch (IOException e) {
                 System.err.println("IO Exception in Client Handler");
