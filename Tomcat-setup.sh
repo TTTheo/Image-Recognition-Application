@@ -13,7 +13,11 @@ cd ..
 cd ..
 sudo wget https://raw.githubusercontent.com/TTTheo/Image-Recognition-Application/master/manager.xml
 sudo wget https://raw.githubusercontent.com/TTTheo/Image-Recognition-Application/master/tomcat-users.xml
-sudo mv manager.xml apache-tomcat-9.0.29/conf/Catalina/localhost/
 sudo mv tomcat-users.xml apache-tomcat-9.0.29/conf/
 cd apache-tomcat-9.0.29/bin
 sudo bash startup.sh
+cd ..
+cd conf
+cd ..
+cd ..
+sudo mv manager.xml apache-tomcat-9.0.29/conf/Catalina/localhost/
