@@ -54,13 +54,10 @@ public class FileUploadController {
 		double tnet = Double.parseDouble(ss[1]) ;
 		double tfiles = Double.parseDouble(ss[2]) ;
 		double tsocket = ttot - tnet - tfiles ;
-		double ttrans = ttot - tnet ;
-		String img = fileName ;
-		model.addAttribute("tsocket", "The socket RTT is " + tsocket);
-		model.addAttribute("tnet", "The net RTT is " + tnet);
-		
-		model.addAttribute("ttrans", "The transmission RTT is " + ttrans) ;
-		model.addAttribute("tfile", "The inference processing time is " + tfiles);
+
+		model.addAttribute("tsocket", "The network time is " + tsocket);
+		model.addAttribute("tnet", "The inference time is " + tnet);
+		model.addAttribute("tfile", "The file processing time is " + tfiles);
 		model.addAttribute("prediction",display) ;
 		System.out.println("------------------");
 		System.out.println(tnet);
