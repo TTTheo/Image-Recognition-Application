@@ -18,9 +18,9 @@ http://198.248.248.136:8080/Image-App/
 
 Upload your image (size < 1MB, tested with .jpg).
 
-![1](./1.png)
+![1](./web1.png)
 
-![2](./2.png)
+![2](./web2.png)
 
 
 
