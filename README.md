@@ -18,6 +18,10 @@ http://198.248.248.136:8080/Image-App/
 
 Upload your image (size < 1MB, tested with .jpg).
 
+Live Demo:
+
+https://youtu.be/rSX9DdryEFA
+
 ![1](./web1.png)
 
 ![2](./web2.png)
