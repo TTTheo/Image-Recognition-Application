@@ -60,9 +60,10 @@ public class InferenceServer {
                 String prediction;
 
                 File tempFile = new File(labelFile);
-
                 while (true) {
+                   try{Thread.sleep(100);}catch(Exception e){}
                     if (tempFile.exists()) {
+                        try{Thread.sleep(100);}catch(Exception e){}
                         prediction = readString(labelFile);
                         break;
                     }
