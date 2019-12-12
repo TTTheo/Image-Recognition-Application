@@ -40,7 +40,7 @@ public class FileUploadController {
 		}
 		long start = System.currentTimeMillis() ;
 		try {
-			client = new Client("204.102.228.186", 8888);
+			client = new Client("72.36.65.85", 8888);
 			System.out.println("connected");
 			res = client.send(uploadDirectory + "/" + fileName);
 		} catch (Exception e) {
