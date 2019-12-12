@@ -18,7 +18,7 @@ http://198.248.248.136:8080/Image-App/
 
 If prompted for password, username: admin, password: 123.
 
-Upload your image (size < 1MB, tested with .jpg).
+Upload your image (size < 1MB, tested with **.jpg**).
 
 Live Demo:
 
