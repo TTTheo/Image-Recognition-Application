@@ -1,0 +1,4 @@
+com/example/demo/FileUploadApplication.class
+object/Client.class
+controller/FileUploadController.class
+object/Server.class

@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Uplaod Status</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 90vh; /* Should be removed. Only for demonstration */
+}
+
+.left, .middle {
+  width: 50%;
+}
+
+.right {
+  width: 40%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
 </head>
 <body>
-  <div th:if="${msg}">
-    <span th:text="${msg}"></span>
-  </div>
 
+<h2>Results</h2>
+
+<div class="row">
+  <div class="column left" style="background-color:#A4CAFA;">
+    <h2>Timing Results</h2>
+    <p th:text = ${tsocket}></p>
+    <p th:text = ${tnet}></p>
+    <p th:text = ${tfile}></p>
+  </div>
+  <div class="column middle" style="background-color:#C7CAF4;">
+    <h2>Classification Prediction</h2>
+    <p th:text = ${prediction}></p>
+  </div>
+</div>
+<form method="POST" action="/Image-App" >
+    <input type="submit" value="Try Again" />
+    </form>
 </body>
 </html>
+
