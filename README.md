@@ -36,7 +36,7 @@ Log into the node called Infer.
 
 
 
-## Step 2 Setup requirements
+## Step 2 Setup Requirements
 
 ```bash
 git clone https://github.com/TTTheo/Image-Recognition-Application.git
@@ -142,7 +142,7 @@ Log into the node called Web
 
 
 
-## Step 2 Setup requirements
+## Step 2 Setup Requirements
 
 Install Java:
 
