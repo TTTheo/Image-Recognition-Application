@@ -1,7 +1,7 @@
 import torch
 from torchvision import models
 from torchvision import transforms
-from PIL import Image
+from PIL import ImageFile, Image
 import os
 import io
 import socket
@@ -19,30 +19,31 @@ class modelInfer:
         self.transform = \
         transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224),
                             transforms.ToTensor(), transforms.Normalize(
-                            mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])]) 
+                            mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
         # this transform is prescribed by pytorch documentation for resnet pretrained imagenet dataset networks
         self.mod=modeltype
         if modeltype=='resnet50':
-            self.Imodel = models.resnet50(pretrained=True, progress=True) 
+            self.Imodel = models.resnet50(pretrained=True, progress=True)
             #pretrained resnet50 will be resource efficient while still achieving near state-of-the-art results
         elif modeltype=='resnet34':
-            self.Imodel = models.resnet34(pretrained=True, progress=True) 
+            self.Imodel = models.resnet34(pretrained=True, progress=True)
         elif modeltype=='resnet101':
-            self.Imodel = models.resnet101(pretrained=True, progress=True) 
+            self.Imodel = models.resnet101(pretrained=True, progress=True)
         elif modeltype=='resnet152':
-            self.Imodel = models.resnet152(pretrained=True, progress=True) 
-
+            self.Imodel = models.resnet152(pretrained=True, progress=True)
+        ImageFile.LOAD_TRUNCATED_IMAGES=True
         print(modeltype)
         self.listener()
 
 
     def model_inference(self, filename):
         timestart=time.time()
-        
+
         with open(filename, "rb") as f:
             b = io.BytesIO(f.read())
+
             img = Image.open(b)
-        
+
         # img = Image.open(filename)
         os.remove(filename)
 
@@ -73,16 +74,15 @@ class modelInfer:
         return strng
 
 
-    def listener(self,wait=.0050):
+    def listener(self,wait=.20):
         counter=0
         while True:
             filename=str(counter)+'.'
             dirinfile='input/'+filename+'*'
             diroutfile='output/'+filename
             if glob.glob(dirinfile):
+                 time.sleep(wait)
                  counter+=1#execute
                  self.model_inference(glob.glob(dirinfile)[0])
             else:
                 time.sleep(wait)
-
-
